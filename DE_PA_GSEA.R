@@ -4,14 +4,14 @@
 #Load Libraries
 ################################################################################
 suppressPackageStartupMessages({
-  library(argparse)           #For parsing command-line arguments
-  library(DESeq2)             #Differential expression analysis
-  library(clusterProfiler)   #Enrichment analysis (GO, KEGG, etc.)
-  library(org.Hs.eg.db)      #Human gene annotation (ENSEMBL <-> ENTREZID)
-  library(ReactomePA)        #Reactome pathway enrichment
-  library(enrichplot)        #Dotplot visualization of enrichment results
-  library(ggplot2)           #General-purpose plotting
-  library(ashr)              #Adaptive shrinkage for log2 fold changes
+  library(argparse)           
+  library(DESeq2)             
+  library(clusterProfiler)   
+  library(org.Hs.eg.db)     
+  library(ReactomePA)       
+  library(enrichplot)       
+  library(ggplot2)          
+  library(ashr)          
 })
 
 ################################################################################
@@ -19,12 +19,12 @@ suppressPackageStartupMessages({
 ################################################################################
 #Set up argument parsing to allow flexible command-line usage of the script
 parser <- ArgumentParser("Simplified DESeq2 → Pathway → GSEA pipeline")
-parser$add_argument("--counts",       required=TRUE, help="Counts CSV (genes × samples)")
-parser$add_argument("--coldata",      required=TRUE, help="Metadata CSV (rows = samples); must include 'condition'")
+parser$add_argument("--counts",required=TRUE, help="Counts CSV (genes × samples)")
+parser$add_argument("--coldata",required=TRUE, help="Metadata CSV (rows = samples); must include 'condition'")
 parser$add_argument("--control_name", required=TRUE, help="Reference condition name")
-parser$add_argument("--p_adj",        type="double", default=0.05, help="Adjusted p-value cutoff for significance")
-parser$add_argument("--lfc",          type="double", default=1.5,  help="Fold-change cutoff (linear)")
-parser$add_argument("--outdir",       default="bulk_rna_results", help="Output directory path")
+parser$add_argument("--p_adj",type="double", default=0.05, help="Adjusted p-value cutoff for significance")
+parser$add_argument("--lfc", type="double", default=1.5,  help="Fold-change cutoff (linear)")
+parser$add_argument("--outdir",default="bulk_rna_results", help="Output directory path")
 
 args <- parser$parse_args()
 dir.create(args$outdir, showWarnings=FALSE)  #Make sure output directory exists
@@ -33,7 +33,7 @@ dir.create(args$outdir, showWarnings=FALSE)  #Make sure output directory exists
 #Read Data & Differential Expression
 ################################################################################
 #Load input data: count matrix and sample metadata
-counts  <- read.csv(args$counts,  row.names=1, check.names=FALSE)
+counts  <- read.csv(args$counts, row.names=1, check.names=FALSE)
 coldata <- read.csv(args$coldata, row.names=1)
 
 #Validate input: ensure 'condition' column exists and control level is present
@@ -126,9 +126,9 @@ gsea_kegg <- gseKEGG(geneList=ranks, organism="hsa", pAdjustMethod="BH", pvalueC
 gsea_reactome <- gsePathway(geneList=ranks, pAdjustMethod="BH", pvalueCutoff=0.05)
 
 #Save GSEA results
-write.csv(as.data.frame(gsea_go),      file.path(args$outdir, "GSEA_GO.csv"), row.names=FALSE)
-write.csv(as.data.frame(gsea_kegg),    file.path(args$outdir, "GSEA_KEGG.csv"), row.names=FALSE)
-write.csv(as.data.frame(gsea_reactome),file.path(args$outdir, "GSEA_Reactome.csv"), row.names=FALSE)
+write.csv(as.data.frame(gsea_go),ffile.path(args$outdir, "GSEA_GO.csv"), row.names=FALSE)
+write.csv(as.data.frame(gsea_kegg),ffile.path(args$outdir, "GSEA_KEGG.csv"), row.names=FALSE)
+write.csv(as.data.frame(gsea_reactome), file.path(args$outdir, "GSEA_Reactome.csv"), row.names=FALSE)
 
 #Plot GSEA dotplots
 plot_gsea_go <- dotplot(gsea_go) + ggtitle("GSEA GO BP")
