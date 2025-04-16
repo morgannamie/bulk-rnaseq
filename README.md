@@ -17,10 +17,6 @@ The analysis covers:
 - geneset enrichment
 - pathway analysis
 
-# DESeq2 → Pathway → GSEA Pipeline
-
-This pipeline provides an end-to-end workflow for analyzing bulk RNA-seq data. It covers differential expression analysis, pathway enrichment (GO, KEGG, Reactome), and Gene Set Enrichment Analysis (GSEA) with a focus on deduplicating gene identifiers. The script is written in R and uses several essential libraries to generate statistical results and visualization plots.
-
 ## Overview
 
 The pipeline performs the following steps:
