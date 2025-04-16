@@ -51,8 +51,7 @@ The pipeline performs the following steps:
    All outputs, including R objects, CSV files, and PNG plots, are saved in the specified output directory.
 
 8. **Downstream Analysis**
-
-  The DESeq2 object (`dds`) produced by this script is used to generate an interactive HTML report. This report includes run details and key differential expression  plots such as MA, volcano, PCA, and heatmap visualizations. This can be seen in the https://github.com/morgannamie/Differential-Expression-Reports repo
+    The DESeq2 object (`dds`) produced by this script is used to generate an interactive HTML report. This report includes run details and key differential expression  plots such as MA, volcano, PCA, and heatmap visualizations. This can be seen in the https://github.com/morgannamie/Differential-Expression-Reports repo
 
 
 ## Prerequisites
