@@ -17,6 +17,11 @@ The analysis covers:
 - geneset enrichment
 - pathway analysis
 
+## Repo Contents
+- **DE_PA_GSEA.R:** The Rscript for differential expression, pathway analysis, and GSEA
+- **bulk-rnaseq-inputs/prostate_cancer_gene_count_matrix_cleaned.csv:** Counts file 
+- **bulk-rnaseq-inputs/prostate_metadata.csv:** Metadata file containing sample names and corresponding condition
+- 
 ## Overview
 
 The pipeline performs the following steps:
