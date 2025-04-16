@@ -79,3 +79,14 @@ if (!requireNamespace("BiocManager", quietly = TRUE))
 
 BiocManager::install(c("DESeq2", "clusterProfiler", "org.Hs.eg.db", "ReactomePA", "enrichplot"))
 install.packages(c("argparse", "ggplot2", "ashr"))
+```
+## Sample Command
+```
+Rscript DE_PA_GSEA.R \
+  --counts prostate_cancer_gene_count_matrix_cleaned.csv \
+  --coldata prostate_metadata.csv \
+  --control_name 'control' \
+  --p_adj 0.05 \
+  --lfc 1.5 \
+  --outdir infected_vs_control_results /
+```
